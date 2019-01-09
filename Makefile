@@ -1,6 +1,6 @@
-OBJECTS = multiload.o fb.o io.o kmain.o
+OBJECTS = multiload.o fb.o io.o kmain.o libc/string.o dt.o isr.o gdt.o timer.o interrupt.o
 CC = gcc
-CFLAGS = -m32 -nostdlib -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs -Wall -Wextra -c -ffreestanding
+CFLAGS = -m32 -nostdinc -nostdlib -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs -Wall -Wextra -c -ffreestanding
 LDFLAGS = -T link.ld -melf_i386
 AS = nasm
 ASFLAGS = -f elf
@@ -22,6 +22,9 @@ run: os.iso
 
 %.o: %.s
 	$(AS) $(ASFLAGS) $< -o $@
+
+libc/%.o: libc/%.c
+	$(CC) $(CFLAGS) $< -o $@
 
 clean:
 	rm -rf *.o kernel.elf os.iso
