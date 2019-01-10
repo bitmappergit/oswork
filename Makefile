@@ -15,7 +15,7 @@ os.iso: kernel.elf
 	mkisofs -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -A os -input-charset utf8 -quiet -boot-info-table -o os.iso iso
 
 run: os.iso
-	bochs -f bochsrc.txt -q
+	qemu-system-i386 -cdrom os.iso -enable-kvm
 
 %.o: %.c
 	$(CC) $(CFLAGS) $< -o $@
