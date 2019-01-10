@@ -1,4 +1,4 @@
-OBJECTS = multiload.o fb.o io.o kmain.o libc/string.o dt.o isr.o gdt.o timer.o interrupt.o serial.o
+OBJECTS = multiload.o fb.o io.o kmain.o libc/string.o dt.o isr.o gdt.o timer.o interrupt.o serial.o paging.o pages.o
 CC = gcc
 CFLAGS = -m32 -nostdinc -nostdlib -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs -c -ffreestanding
 LDFLAGS = -T link.ld -melf_i386

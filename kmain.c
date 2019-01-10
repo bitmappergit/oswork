@@ -4,9 +4,11 @@
 #include "dt.h"
 #include "timer.h"
 #include "serial.h"
+#include "paging.h"
 
 void kmain(struct multiboot *mboot_ptr) {
 	init_dt();
+	init_paging();
 	//asm volatile ("int $0x3");
 	//asm volatile ("int $0x4");
 	//int i = 0;
@@ -31,8 +33,9 @@ void kmain(struct multiboot *mboot_ptr) {
 	//outb(0x3F8, 'h');
 	//outb(0x0F8, 'a');
 	init_timer(1);
-	char str[16];
-	while(1 == 1) {
+	fb_write_str("haha yes\n");
+	//char str[16];
+	/* while(1 == 1) {
 		if(get_timer_value() % 100 == 0) {
 		itoa(get_timer_value() / 100, str, 10);
 		//fb_write_str("hhhhhhhhhhhhhhh");
@@ -40,5 +43,5 @@ void kmain(struct multiboot *mboot_ptr) {
 		fb_write_str("\n");
 		}
 		//timer_tick();
-	}
+	} */
 }
