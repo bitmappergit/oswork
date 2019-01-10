@@ -1,4 +1,7 @@
+#ifndef INCLUDE_ISR_H
+#define INCLUDE_ISR_H
 #include "io.h"
+
 #define IRQ0 32
 #define IRQ1 33
 #define IRQ2 34
@@ -17,11 +20,13 @@
 #define IRQ15 47
 
 typedef void (*isr_t)(registers_t);
-void register_interrupt_handler(u8int n, isr_t handler);
+void register_interrupt_handler(uint8_t n, isr_t handler);
 
 typedef struct registers {
-	u32int ds;
-	u32int edi, esi, ebp, esp, ebx, edx, ecx, eax;
-	u32int int_no, err_code;
-	u32int eip, cs, eflags, useresp, ss;
+	uint32_t ds;
+	uint32_t edi, esi, ebp, useless_value, ebx, edx, ecx, eax;
+	uint32_t int_no, err_code;
+	uint32_t eip, cs, eflags, esp, ss;
 } registers_t;
+
+#endif

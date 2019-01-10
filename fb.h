@@ -27,7 +27,7 @@
 #define FB_WHITE          15
 
 void fb_init(void);
-void fb_write_cell(u8int x, u8int y, char c, unsigned char fg, unsigned char bg);
+void fb_write_cell(uint8_t x, uint8_t y, char c, unsigned char fg, unsigned char bg);
 void fb_move_cursor(int x, int y);
 void fb_write_char_color(char c, unsigned char fg, unsigned char bg);
 void fb_write_char(char c);

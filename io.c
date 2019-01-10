@@ -1,30 +1,30 @@
-#include "typedefs.h"
+#include "libc/stddef.h"
 #include "io.h"
 
-void outb(u16int port, u8int value) {
+void outb(uint16_t port, uint8_t value) {
 	asm volatile ("outb %1, %0" : : "dN" (port), "a" (value));
 }
 
-u8int inb(u16int port) {
-	u8int ret;
+uint8_t inb(uint16_t port) {
+	uint8_t ret;
 	asm volatile("inb %1, %0" : "=a" (ret) : "dN" (port));
 	return ret;
 }
 
-u16int inw(u16int port) {
-	u16int ret;
+uint16_t inw(uint16_t port) {
+	uint16_t ret;
 	asm volatile ("inw %1, %0" : "=a" (ret) : "dN" (port));
 	return ret;
 }
 
-void memcpy(u8int *dest, const u8int *src, u32int len) {
-    const u8int *sp = (const u8int *)src;
-    u8int *dp = (u8int *)dest;
+void memcpy(uint8_t *dest, const uint8_t *src, uint32_t len) {
+    const uint8_t *sp = (const uint8_t *)src;
+    uint8_t *dp = (uint8_t *)dest;
     for(; len != 0; len--) *dp++ = *sp++;
 }
 
-void memset(u8int *dest, u8int val, u32int len) {
-    u8int *temp = (u8int *)dest;
+void memset(uint8_t *dest, uint8_t val, uint32_t len) {
+    uint8_t *temp = (uint8_t *)dest;
     for ( ; len != 0; len--) *temp++ = val;
 }
 

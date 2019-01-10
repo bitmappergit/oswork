@@ -1,4 +1,6 @@
-char* itoa (int value, char *result, int base) {
+#include "stddef.h"
+
+char* itoa (uint32_t value, char *result, uint32_t base) {
 	if (base < 2 || base > 36) { *result = '\0'; return result; }
 
 	char* ptr = result, *ptr1 = result, tmp_char;

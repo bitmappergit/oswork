@@ -1,10 +1,10 @@
-#include "typedefs.h"
+#include "libc/stddef.h"
 
 #ifndef INCLUDE_IO_H
 #define INCLUDE_IO_H
 
-void outb(u16int port, u8int data);
-u8int inb(u16int port);
-u16int inw(u16int port);
+void outb(uint16_t port, uint8_t data);
+uint8_t inb(uint16_t port);
+uint16_t inw(uint16_t port);
 
 #endif

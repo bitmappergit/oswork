@@ -1,6 +1,6 @@
-OBJECTS = multiload.o fb.o io.o kmain.o libc/string.o dt.o isr.o gdt.o timer.o interrupt.o
+OBJECTS = multiload.o fb.o io.o kmain.o libc/string.o dt.o isr.o gdt.o timer.o interrupt.o serial.o
 CC = gcc
-CFLAGS = -m32 -nostdinc -nostdlib -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs -Wall -Wextra -c -ffreestanding
+CFLAGS = -m32 -nostdinc -nostdlib -fno-builtin -fno-stack-protector -nostartfiles -nodefaultlibs -c -ffreestanding
 LDFLAGS = -T link.ld -melf_i386
 AS = nasm
 ASFLAGS = -f elf

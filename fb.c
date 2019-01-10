@@ -1,23 +1,23 @@
 #include "fb.h"
 #include "io.h"
 
-u16int width, height;
-u16int x = 0, y = 0;
-u16int* fb;
+uint16_t width, height;
+uint16_t x = 0, y = 0;
+uint16_t* fb;
 
 void fb_init(void) {
-	fb = (u16int*) 0xB8000;
+	fb = (uint16_t*) 0xB8000;
 	width = 80;
 	height = 25;
 }
 
-void fb_write_cell(u8int x, u8int y, char c, unsigned char fg, unsigned char bg) {
-	u16int pos = y * width + x;
-	fb[pos] = (u16int) c | (u16int) ((bg << 4) | (fg & 0x0F)) << 8;
+void fb_write_cell(uint8_t x, uint8_t y, char c, unsigned char fg, unsigned char bg) {
+	uint16_t pos = y * width + x;
+	fb[pos] = (uint16_t) c | (uint16_t) ((bg << 4) | (fg & 0x0F)) << 8;
 }
 
 void fb_move_cursor(int x, int y) {
-	u16int pos = y * width + x;
+	uint16_t pos = y * width + x;
 	outb(FB_COMMAND_PORT, FB_HIGH_BYTE_COMMAND);
 	outb(FB_DATA_PORT, ((pos >> 8) & 0x00FF));
 	outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
@@ -70,13 +70,13 @@ void fb_clear() {
 }
 
 void fb_scroll() {
-	u8int colorByte = (0 << 4) | (15 & 0x0F);
-	u16int blank = 0x20 | (colorByte << 8);
+	uint8_t colorByte = (0 << 4) | (15 & 0x0F);
+	uint16_t blank = 0x20 | (colorByte << 8);
 
 	if (y >= 25) {
 		int i;
 		
-		for (i = 0*80; i < 24*80; i++) {
+		for (i = 0*80; i < 25*80; i++) {
 			fb[i] = fb[i+80];
 		}
 
